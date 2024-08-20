@@ -27,14 +27,14 @@ app.get('/user/validateToken', (req, res) =>{
     const secret_key = 'supersecret';
 
     try{
-        userToken = req.headers.authorization.split('')[1];
+        const userToken = req.headers.authorization.split(' ')[1];
 
-       console.log(req.headers);
+        console.log(req.headers);
 
         const verified = jwt.verify(userToken, secret_key);
 
         if(verified){
-            console.log(`JSON web token has been verified: ${verified}`);
+            console.log(`JSON web token has been verified: ${verified.value}`);
         } else{
             console.log(`User is not authorized: ${verified}`);
         }
